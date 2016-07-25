@@ -1,0 +1,17 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="mount">{{{ renderedComponent }}}</div>
+        <script src="dist/bundle.js"></script>
+        <script>
+            ReactDOM.render(
+                React.createElement(
+                    Component.default, {}
+                ),
+                window.mount
+            );
+        </script>
+    </body>
+</html>
+

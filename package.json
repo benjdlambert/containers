@@ -1,0 +1,40 @@
+{
+  "name": "containers-pre",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjdlambert/containers-pre.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benjdlambert/containers-pre/issues"
+  },
+  "homepage": "https://github.com/benjdlambert/containers-pre#readme",
+  "dependencies": {
+    "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.5",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "expose-loader": "^0.7.1",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
+    "grunt-webpack": "^1.0.11",
+    "webpack": "^1.13.1"
+  }
+}
