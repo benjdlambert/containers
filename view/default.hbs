@@ -5,6 +5,9 @@
         <div id="mount">{{{ renderedComponent }}}</div>
         <script src="dist/bundle.js"></script>
         <script>
+            window.ContainerData = {{{ ContainerData }}}
+        </script>
+        <script>
             ReactDOM.render(
                 React.createElement(
                     Component.default, {}

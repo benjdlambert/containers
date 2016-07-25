@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Container from './container';
 
-export default class extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { name: 'none' };
-        this.fetchData = this.fetchData.bind(this);
-
-        this.fetchData();
-    }
-    fetchData() {
-        fetch('/data/ben')
-            .then((response) => response.json())
-            .then((response) => this.setState({ name: response.name }));
-    }
+class MyTimeComponent extends React.Component {
     render() {
-        return <h1>Im a test component {this.state.name}</h1>
+        return <h1>The current time is: {this.props.data.timeEndpoint.time}</h1>
     }
 }
+
+export default Container(
+    MyTimeComponent,
+    {
+        data(props) {
+            return {
+                timeEndpoint: 'http://localhost:8080/data/time'
+            }
+        }
+    }
+)
