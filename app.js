@@ -9,8 +9,8 @@ global.ServerState = {};
 
 app.use('/dist', express.static('dist'));
 
-app.get('/data/:name', (request, response) => {
-    response.send({ name: request.params.name });
+app.get('/data/time', (request, response) => {
+    response.send({ time: Date.now() });
 });
 
 app.get('/view', (request, response) => {
@@ -22,7 +22,7 @@ app.get('/view', (request, response) => {
         );
 
     response.send(
-        template({ renderedComponent, serverState: JSON.stringify(serverState) })
+        template({ renderedComponent, serverState: JSON.stringify(ServerState) })
     );
 
 });

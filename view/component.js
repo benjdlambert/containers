@@ -30,7 +30,7 @@ var _class = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this, props));
 
-        _this.state = { name: 'none' };
+        _this.state = { time: 'lols' };
         _this.fetchData = _this.fetchData.bind(_this);
 
         _this.fetchData();
@@ -42,10 +42,10 @@ var _class = function (_React$Component) {
         value: function fetchData() {
             var _this2 = this;
 
-            fetch('/data/ben').then(function (response) {
+            fetch('/data/time').then(function (response) {
                 return response.json();
             }).then(function (response) {
-                return _this2.setState({ name: response.name });
+                return _this2.setState({ time: response.time });
             });
         }
     }, {
@@ -55,7 +55,7 @@ var _class = function (_React$Component) {
                 'h1',
                 null,
                 'Im a test component ',
-                this.state.name
+                this.state.time
             );
         }
     }]);
