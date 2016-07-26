@@ -16,6 +16,6 @@ export default class extends React.Component {
             .then((response) => this.setState({ name: response.name }));
     }
     render() {
-        return <h1>Shout if you are: {this.state.name}</h1>
+        return <h1>Shout out if you are: {this.state.name}</h1>
     }
 }
