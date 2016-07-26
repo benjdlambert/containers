@@ -5,6 +5,8 @@ const ReactDOMServer = require('react-dom/server'),
     express = require('express'),
     app = express();
 
+global.ServerState = {};
+
 app.use('/dist', express.static('dist'));
 
 app.get('/data/:name', (request, response) => {
@@ -20,7 +22,7 @@ app.get('/view', (request, response) => {
         );
 
     response.send(
-        template({ renderedComponent })
+        template({ renderedComponent, serverState: JSON.stringify(serverState) })
     );
 
 });

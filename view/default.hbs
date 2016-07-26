@@ -3,7 +3,10 @@
     </head>
     <body>
         <div id="mount">{{{ renderedComponent }}}</div>
-        <script src="dist/bundle.js"></script>
+        <script src="dist/bundle.js"></script>w
+        <script>
+            window.ServerState = {{{ serverState }}}
+        </script>
         <script>
             ReactDOM.render(
                 React.createElement(
