@@ -14,6 +14,10 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _container = require('./container');
+
+var _container2 = _interopRequireDefault(_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22,46 +26,35 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _class = function (_React$Component) {
-    _inherits(_class, _React$Component);
+var MyTimeComponent = function (_React$Component) {
+    _inherits(MyTimeComponent, _React$Component);
 
-    function _class(props) {
-        _classCallCheck(this, _class);
+    function MyTimeComponent() {
+        _classCallCheck(this, MyTimeComponent);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this, props));
-
-        _this.state = { name: 'none' };
-        _this.fetchData = _this.fetchData.bind(_this);
-
-        _this.fetchData();
-        return _this;
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(MyTimeComponent).apply(this, arguments));
     }
 
-    _createClass(_class, [{
-        key: 'fetchData',
-        value: function fetchData() {
-            var _this2 = this;
-
-            fetch('/data/ben').then(function (response) {
-                return response.json();
-            }).then(function (response) {
-                return _this2.setState({ name: response.name });
-            });
-        }
-    }, {
+    _createClass(MyTimeComponent, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'h1',
                 null,
-                'Im a test component ',
-                this.state.name
+                'The current time is: ',
+                this.props.data.timeEndpoint.time
             );
         }
     }]);
 
-    return _class;
+    return MyTimeComponent;
 }(_react2.default.Component);
 
-exports.default = _class;
+exports.default = (0, _container2.default)(MyTimeComponent, {
+    data: function data(props) {
+        return {
+            timeEndpoint: 'http://localhost:8080/data/time'
+        };
+    }
+});
 module.exports = exports['default'];

@@ -1,5 +1,11 @@
 require('isomorphic-fetch');
 
+
+global.ServerState = {};
+ServerState['http://localhost:8080/data/time'] = {
+    time: Date.now()
+};
+
 const ReactDOMServer = require('react-dom/server'),
     React = require('react'),
     express = require('express'),
@@ -7,8 +13,8 @@ const ReactDOMServer = require('react-dom/server'),
 
 app.use('/dist', express.static('dist'));
 
-app.get('/data/:name', (request, response) => {
-    response.send({ name: request.params.name });
+app.get('/data/time', (request, response) => {
+    response.send({ time: Date.now() });
 });
 
 app.get('/view', (request, response) => {
@@ -20,7 +26,7 @@ app.get('/view', (request, response) => {
         );
 
     response.send(
-        template({ renderedComponent })
+        template({ renderedComponent, ServerState: JSON.stringify(ServerState) })
     );
 
 });
