@@ -5,17 +5,17 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { time: 'lols' };
+        this.state = { name: '@benjdlambert' };
         this.fetchData = this.fetchData.bind(this);
 
         this.fetchData();
     }
     fetchData() {
-        fetch('/data/time')
+        fetch('/data/random_name')
             .then((response) => response.json())
-            .then((response) => this.setState({ time: response.time }));
+            .then((response) => this.setState({ name: response.name }));
     }
     render() {
-        return <h1>The current time in EPOCH is: {this.state.time}</h1>
+        return <h1>Shout if you are: {this.state.name}</h1>
     }
 }
