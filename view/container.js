@@ -27,13 +27,18 @@ exports.default = function (ReactClass, dataRequirements) {
         }
 
         _createClass(_class, [{
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                this.populateData();
+            }
+        }, {
             key: 'populateData',
             value: function populateData() {
                 var _this2 = this;
 
                 Object.keys(this.state.dataRequirements).forEach(function (key) {
                     var URL = _this2.state.dataRequirements[key];
-                    _this2.state.data[key] = ContainerData[URL];
+                    _this2.state.data[key] = ServerState[URL];
                 });
             }
         }, {

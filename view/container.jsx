@@ -14,11 +14,14 @@ export default function(ReactClass, dataRequirements) {
 
             this.populateData();
         }
+        componentDidMount() {
+            this.populateData();
+        }
         populateData() {
             Object.keys(this.state.dataRequirements)
                 .forEach((key) => {
                     let URL = this.state.dataRequirements[key];
-                    this.state.data[key] = ContainerData[URL];
+                    this.state.data[key] = ServerState[URL];
                 });
         }
         render() {

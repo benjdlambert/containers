@@ -1,10 +1,10 @@
 require('isomorphic-fetch');
 
 
-global.ContainerData = {};
-ContainerData['http://localhost:8080/data/time'] = {
+global.ServerState = {};
+ServerState['http://localhost:8080/data/time'] = {
     time: Date.now()
-}
+};
 
 const ReactDOMServer = require('react-dom/server'),
     React = require('react'),
@@ -26,7 +26,7 @@ app.get('/view', (request, response) => {
         );
 
     response.send(
-        template({ renderedComponent, ContainerData: JSON.stringify(ContainerData) })
+        template({ renderedComponent, ServerState: JSON.stringify(ServerState) })
     );
 
 });
