@@ -21,15 +21,27 @@ exports.default = function (ReactClass, dataRequirements) {
             };
 
             _this.populateData = _this.populateData.bind(_this);
-
-            _this.populateData();
             return _this;
         }
 
         _createClass(_class, [{
+            key: 'componentWillMount',
+            value: function componentWillMount() {
+                this.populateData();
+            }
+        }, {
             key: 'componentDidMount',
             value: function componentDidMount() {
-                this.populateData();
+                this.pollForChanges();
+            }
+        }, {
+            key: 'makeRequestAndSetState',
+            value: function makeRequestAndSetState(URL) {
+                return fetch(URL).then(function (response) {
+                    return response.json();
+                }).then(function (response) {
+                    return ServerState[URL] = response;
+                });
             }
         }, {
             key: 'populateData',
@@ -38,7 +50,29 @@ exports.default = function (ReactClass, dataRequirements) {
 
                 Object.keys(this.state.dataRequirements).forEach(function (key) {
                     var URL = _this2.state.dataRequirements[key];
-                    _this2.state.data[key] = ServerState[URL];
+                    if (!ServerState[URL]) {
+                        _this2.makeRequestAndSetState(URL).then(function () {
+                            return _this2.populateData();
+                        });
+                    } else {
+                        _this2.state.data[key] = ServerState[URL];
+                    }
+                });
+            }
+        }, {
+            key: 'pollForChanges',
+            value: function pollForChanges() {
+                var _this3 = this;
+
+                Object.keys(this.state.dataRequirements).forEach(function (key) {
+                    var URL = _this3.state.dataRequirements[key];
+                    setInterval(function () {
+                        _this3.makeRequestAndSetState(URL).then(function () {
+                            return _this3.populateData();
+                        }).then(function () {
+                            return _this3.forceUpdate();
+                        });
+                    }, 1000);
                 });
             }
         }, {
